@@ -14,10 +14,10 @@ const Header = () => {
         <ul className=" inline-flex items-center ">
           <li>
             <button className=" header-btn " href="#">
-              <NavLink to={`sign_in`}>Sign in</NavLink>
+              <NavLink to={`sign_in`}>Зарегистр</NavLink>
             </button>
             <button className=" header-btn " href="#">
-              <NavLink to={`sign_up`}>Sign up</NavLink>
+              <NavLink to={`sign_up`}>Войти</NavLink>
             </button>
           </li>
         </ul>

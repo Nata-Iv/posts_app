@@ -1,26 +1,24 @@
 import { useForm } from "react-hook-form";
 
-const FormAuth = () => {
+const FormAuth = ({onSubmit}) => {
   const {
     register,
     handleSubmit,
-    watch,
+    // watch,
     formState: { errors, isValid },
   } = useForm({
     mode: "onBlur",
   });
 
-  const onSubmit = (data) => console.log(data);
-
-  console.log(watch("email")); // watch input value by passing the name of it
+  // console.log(watch("email")); // watch input value by passing the name of it
 
   return (
-    <div className="bg-purple-100 h-screen">
-      <p className=" text-center text-2xl py-10 text-purple-950">Sign in</p>
+    <div className="bg-purple-100">
+      
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <input
-        placeholder="Email address"
+          placeholder="Email address"
           className=" block mx-auto w-96 input"
           defaultValue=""
           {...register("email", {
@@ -36,7 +34,7 @@ const FormAuth = () => {
         </div>
 
         <input
-        placeholder="Password"
+          placeholder="Password"
           type="password"
           className=" block mx-auto w-96 mt-5 input"
           {...register("password", {
@@ -61,9 +59,11 @@ const FormAuth = () => {
 
         <input
           disabled={!isValid}
-          type="submit"
+          type="submit" value="Send Request"
           className="block mx-auto mt-5 py-1 px-3 border-2 rounded-full border-indigo-600 text-indigo-600 hover:text-white hover:bg-indigo-800 focus:outline-none focus:ring focus:ring-violet-300"
         />
+
+        
       </form>
     </div>
   );

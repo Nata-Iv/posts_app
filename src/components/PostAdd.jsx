@@ -2,6 +2,8 @@
 import axios from "axios";
 import { useState } from "react";
 import {API_URL} from "../constants"
+import { NumberParam, useQueryParam, withDefault } from 'use-query-params';
+import { useNavigate } from "react-router-dom";
 
 const initialValues = {
   id: null,
@@ -10,6 +12,9 @@ const initialValues = {
 }
 
 const FormPostAdd = () => {
+  const [page] = useQueryParam('page', withDefault(NumberParam, 1))
+  const navigate = useNavigate()
+
   const [postData, setPostData] = useState(initialValues)
   const [posts, setPosts] = useState([])
 
@@ -25,15 +30,16 @@ const FormPostAdd = () => {
       title: postData.titleValue,
       body: postData.bodyValue
     })
-    
+    .then(response  => {
+      {navigate(`/?page=${page}`)}
+    })
   }
-  console.log(posts)
+  
   return (
     <div className=" bg-purple-100 h-screen">
       <p className=" text-center text-2xl py-10 text-purple-950">
         Add new post
       </p>
-      {/* <FormPost   /> */}
       <div className="mx-auto ">
       <form  onSubmit={handleSubmitPost} className=" items-center" action="">
         <input className=" block mx-auto w-5/6 my-5 input" type="text" placeholder="Title"

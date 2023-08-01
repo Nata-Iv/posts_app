@@ -1,14 +1,15 @@
 import ReactPaginate from "react-paginate";
-
+import { NumberParam, useQueryParam, withDefault } from "use-query-params";
 
 const Pagination = ({handlePageClick, pageCount}) => {
-
+  const [page] = useQueryParam("page", withDefault(NumberParam, 1));
   return (
     <div className="px-4">
       <ReactPaginate  className="react-paginate text-purple-950 flex justify-center mx-4 mb-8 bg-gradient-to-r from-white via-purple-200 to-white"
         breakLabel="..."
         nextLabel=" >"
         onPageChange={handlePageClick}
+        initialPage={page-1}
         marginPagesDisplayed={2}
         pageRangeDisplayed={5}
         pageCount={pageCount}
@@ -20,31 +21,3 @@ const Pagination = ({handlePageClick, pageCount}) => {
 };
 
 export default Pagination;
-
-// const Pagination = ({ postsPerPage, totalPosts, paginate, setCurrentPage }) => {
-
-//   const pageNumbers = [];
-
-//   const prevPage = () => setCurrentPage( prev => prev - 1)
-//   const nextPage = () => setCurrentPage( prev =>  prev + 1)
-
-//   for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
-//     pageNumbers.push(i);
-//   }
-
-//   return (
-//     <div className="px-4">
-//       <ul className=" text-purple-950 flex justify-center px-4 py-2 mb-8 bg-gradient-to-r from-white via-purple-200 to-white">
-//         <li className="mx-2"><button onClick={prevPage}>&lt;</button></li>
-//         {pageNumbers.map((number) => (
-//           <li key={number} className="mx-2">
-//             <a href="#" onClick={() => paginate(number)}>{number}</a>
-//           </li>
-//         ))}
-//         <li className="mx-2"><button onClick={nextPage}>&gt;</button></li>
-//       </ul>      
-//     </div>
-//   );
-// };
-
-// export default Pagination;
