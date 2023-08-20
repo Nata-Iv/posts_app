@@ -17,6 +17,7 @@ const FormAuth = ({onSubmit}) => {
       
 
       <form onSubmit={handleSubmit(onSubmit)}>
+
         <input
           placeholder="Email address"
           className=" block mx-auto w-96 input"
@@ -46,6 +47,17 @@ const FormAuth = ({onSubmit}) => {
             maxLength: {
               value: 15,
               message: "Max is 15 symbols",
+            },
+            // pattern: {
+            //   value: /^[A-Z]+$/i,
+            //   message: 'At least one capitalize letter'
+            // }
+            validate: (value) => {
+              return (
+                [/[a-z]/, /[A-Z]/, /[0-9]/,/[!@#$%^&*]/].every((pattern) =>
+                  pattern.test(value)
+                ) || "must include lower, upper, number, and special chars"
+              );
             },
           })}
         />

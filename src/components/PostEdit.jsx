@@ -60,12 +60,14 @@ const FormPostEdit = () => {
               body: e.target.value
             }))}
           />
+          <div className=" flex justify-center">
           <button
             type="submit"
-            className="mx-4 py-1 px-3 border-2 rounded-full border-indigo-600 text-indigo-600 hover:text-white hover:bg-indigo-800 focus:outline-none focus:ring focus:ring-violet-300"
+            className=" py-1 px-3 border-2 btn-decorate"
           >
             Save
           </button>
+          </div>
         </form>
         <div>
           {/* {posts.map((post, index) => (

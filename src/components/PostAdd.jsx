@@ -8,7 +8,9 @@ import { useNavigate } from "react-router-dom";
 const initialValues = {
   id: null,
   titleValue: '',
-  bodyValue: ''
+  bodyValue: '',
+  likes: [],
+  comments: []
 }
 
 const FormPostAdd = () => {
@@ -28,7 +30,9 @@ const FormPostAdd = () => {
     }
     axios.post(API_URL, {
       title: postData.titleValue,
-      body: postData.bodyValue
+      body: postData.bodyValue,
+      likes: postData.likes,
+      comments: postData.comments
     })
     .then(response  => {
       {navigate(`/?page=${page}`)}
@@ -54,7 +58,9 @@ const FormPostAdd = () => {
           bodyValue: e.target.value
         }))}
         value={postData.bodyValue}  />
-        <button disabled={!isFilledFields} type="submit" className="mx-4 py-1 px-3 border-2 rounded-full border-indigo-600 text-indigo-600 hover:text-white hover:bg-indigo-800 focus:outline-none focus:ring focus:ring-violet-300">Add</button>
+        <div className=" flex justify-center">
+        <button disabled={!isFilledFields} type="submit" className=" py-1 px-3 border-2 btn-decorate">Add</button>
+        </div>
       </form>
       <div>
         {posts.map((post, index) => (

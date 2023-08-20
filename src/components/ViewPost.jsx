@@ -11,19 +11,24 @@ const ViewPost = () => {
 
   const params = useParams();
   const [post, setPost] = useState([]);
-
+  const [comments, setComments] = useState([])
   useEffect(() => {
     axios
       .get(`${API_URL}/${params.id}`)
-      .then((res) => setPost(res.data))
+      .then((res) => {
+        setPost(res.data)
+        setComments(res.data.comments)
+      })
       .catch((err) => console.log(err));
   }, []);
 
   const handleRemoveClick = (postData) => {
-    axios.delete(`${API_URL}/${postData.id}`)
+    if (localStorage.length > 1) {
+      axios.delete(`${API_URL}/${postData.id}`)
     .then(response  => {
       {navigate(`/?page=${page}`)}
     })
+    } else {alert('log in for delete')}
   }
 
   return (
@@ -52,6 +57,24 @@ const ViewPost = () => {
           href="#"
         >
           Delete post
+        </button>
+      </div>
+      {!!comments && comments.map((comment) => (
+        <div key={comment.id} className="my-4">
+            <p className="bg-purple-100 text-sm rounded-3xl  px-6 text-gray-700">{comment.body}</p>
+            <p className=" flex justify-between text-xs ">
+            <span >{comment.time}</span>
+            <span >{comment.userName}</span>          
+            </p>
+        </div>
+      ))}
+      <div className=" text-center">
+      <button
+          type="button"
+          href="#"
+          className=" ml-8 text-base  text-gray-500 hover:text-indigo-600 "
+        >
+          <NavLink to={`../comment_post/${params.id}?page=${page}`}>Comment post</NavLink>
         </button>
       </div>
     </div>
