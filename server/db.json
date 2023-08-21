@@ -1,78 +1,271 @@
 {
   "posts": [
     {
-      "id": 1,
-      "title": "Title 1: qui est esse",
-      "body": "Eest rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla. Iuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est "
-    },
-    {
       "id": 2,
       "title": "Title 2: qui est esse",
+      "likes": [],
+      "comments": [],
       "body": "Eest rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla. Iuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est "
-    },
-    {
-      "id": 3,
-      "title": "Title 3: ea molestias quasi exercitationem repellat qui ipsa sit aut",
-      "body": "Det iusto sed quo iure\nvoluptatem occaecati omnis eligendi aut ad\nvoluptatem doloribus vel accusantium quis pariatur\nmolestiae porro eius odio et labore et velit aut. untur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est untur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est."
     },
     {
       "id": 4,
+      "likes": [
+        2
+      ],
+      "comments": [
+        {
+          "body": "qweqwe",
+          "id": 2,
+          "userName": "nyasha25",
+          "time": "20.08.2023, 03:23:55"
+        },
+        {
+          "body": "asdasdd",
+          "id": 2,
+          "userName": "nyasha25",
+          "time": "20.08.2023, 03:27:58"
+        }
+      ],
       "title": "Title 4: eum et est occaecati",
       "body": "Dullam et saepe reiciendis voluptatem adipisci\nsit amet autem assumenda provident rerum culpa\nquis hic commodi nesciunt rem tenetur doloremque ipsam iure\nquis sunt voluptatem rerum illo velit Guntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est "
     },
     {
       "id": 5,
+      "likes": [],
+      "comments": [],
       "title": "Title 5: nesciunt quas odio",
       "body": "Frepudiandae veniam quaerat sunt sed\nalias aut fugiat sit autem sed est\nvoluptatem omnis possimus esse voluptatibus quis\nest aut tenetur dolor neque. untur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est untur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est "
     },
     {
       "id": 6,
+      "likes": [],
+      "comments": [],
       "title": "Title 6: nesciunt quas odio",
       "body": "Frepudiandae veniam quaerat sunt sed\nalias aut fugiat sit autem sed est\nvoluptatem omnis possimus esse voluptatibus quis\nest aut tenetur dolor neque. untur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est untur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est "
     },
     {
       "id": 7,
+      "likes": [],
+      "comments": [],
       "title": "Title 7: nesciunt quas odio",
       "body": "Frepudiandae veniam quaerat sunt sed\nalias aut fugiat sit autem sed est\nvoluptatem omnis possimus esse voluptatibus quis\nest aut tenetur dolor neque. untur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est untur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est "
     },
     {
       "title": "good evening",
       "body": "I'm here",
-      "id": 8
+      "comments": [],
+      "id": 8,
+      "likes": []
     },
     {
       "title": "good evening2",
       "body": "There is evening2",
-      "id": 9
+      "id": 9,
+      "comments": [],
+      "likes": []
     },
     {
-      "title": "hi",
-      "body": "hi there",
       "id": 10,
-      "titleValue": "",
-      "bodyValue": ""
+      "likes": [
+        3
+      ],
+      "comments": [],
+      "title": "Title 10: qui est esse",
+      "body": "Eest rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla. Iuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est "
     },
     {
-      "title": "sdfdsfdsf",
+      "id": 11,
+      "likes": [],
+      "comments": [],
+      "title": "Title 11: qui est esse",
+      "body": "Eest rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla. Iuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est "
+    },
+    {
+      "id": 12,
+      "likes": [],
+      "comments": [],
+      "title": "Title 12: ea molestias quasi exercitationem repellat qui ipsa sit aut",
+      "body": "Det iusto sed quo iure\nvoluptatem occaecati omnis eligendi aut ad\nvoluptatem doloribus vel accusantium quis pariatur\nmolestiae porro eius odio et labore et velit aut. untur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est untur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est."
+    },
+    {
+      "id": 13,
+      "likes": [
+        2
+      ],
+      "comments": [],
+      "title": "Title 13: eum et est occaecati",
+      "body": "Dullam et saepe reiciendis voluptatem adipisci\nsit amet autem assumenda provident rerum culpa\nquis hic commodi nesciunt rem tenetur doloremque ipsam iure\nquis sunt voluptatem rerum illo velit Guntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est "
+    },
+    {
+      "id": 14,
+      "likes": [
+        2
+      ],
+      "comments": [],
+      "title": "Title 14: nesciunt quas odio",
+      "body": "Frepudiandae veniam quaerat sunt sed\nalias aut fugiat sit autem sed est\nvoluptatem omnis possimus esse voluptatibus quis\nest aut tenetur dolor neque. untur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est untur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est "
+    },
+    {
+      "title": "tttt1",
+      "body": "ttttt",
+      "id": 28,
+      "comments": [
+        {
+          "body": "123",
+          "id": 2,
+          "userName": "nyasha25",
+          "time": "20.08.2023, 04:02:56"
+        },
+        {
+          "body": "sasdasdasd",
+          "id": 2,
+          "userName": "nyasha25",
+          "time": "20.08.2023, 04:04:01"
+        }
+      ],
+      "likes": [
+        2
+      ]
+    },
+    {
+      "title": "good night",
+      "body": "dear friends!",
+      "id": 30,
+      "comments": [
+        {
+          "body": "qwewe",
+          "id": 2,
+          "userName": "nyasha25",
+          "time": "20.08.2023, 03:22:36"
+        }
+      ],
+      "likes": [
+        5,
+        2,
+        1
+      ]
+    },
+    {
+      "title": "2",
       "body": "",
-      "id": 11
+      "likes": [],
+      "comments": [
+        {
+          "body": "sdfs",
+          "id": 2,
+          "userName": "nyasha25",
+          "time": "20.08.2023, 03:56:03"
+        },
+        {
+          "body": "sdfdsf",
+          "id": 2,
+          "userName": "nyasha25",
+          "time": "20.08.2023, 03:56:27"
+        },
+        {
+          "body": "asdsda",
+          "id": 2,
+          "userName": "nyasha25",
+          "time": "20.08.2023, 04:00:01"
+        },
+        {
+          "body": "2345",
+          "id": 2,
+          "userName": "nyasha25",
+          "time": "20.08.2023, 04:00:06"
+        }
+      ],
+      "id": 32
     },
     {
-      "title": "sdfdsfs",
-      "body": "dfdsfdsfsdf",
-      "id": 12
-    },
-    {
-      "title": "sss",
-      "body": "ss",
-      "id": 13
+      "title": "1231231",
+      "body": "23123 Dullam et saepe reiciendis 123 Dullam et saepe reiciendis voluptatem adipisci\nsit amet autem assumen 123 Dullam et saepe reiciendis voluptatem adipisci\nsit amet autem assumen voluptatem adipisci\nsit amet autem assumenda provident rerum culpa\nquis hic commodi nesciunt rem tenetur doloremque ipsam iure\nquis sunt voluptatem rerum illo velit Guntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum reru",
+      "likes": [
+        2
+      ],
+      "comments": [
+        {
+          "body": "qweqwe",
+          "id": 2,
+          "userName": "nyasha25",
+          "time": "20.08.2023, 04:05:16"
+        },
+        {
+          "body": "qweqweqwe",
+          "id": 2,
+          "userName": "nyasha25",
+          "time": "20.08.2023, 04:05:20"
+        },
+        {
+          "body": "12344234",
+          "id": 2,
+          "userName": "nyasha25",
+          "time": "20.08.2023, 04:05:24"
+        },
+        {
+          "body": "34342342. assadasda",
+          "id": 2,
+          "userName": "nyasha25",
+          "time": "20.08.2023, 04:05:39"
+        },
+        {
+          "body": "dfsdfdsfsd",
+          "id": 2,
+          "userName": "nyasha25",
+          "time": "20.08.2023, 04:08:28"
+        },
+        {
+          "body": "123 sdd",
+          "id": 2,
+          "userName": "nyasha25",
+          "time": "20.08.2023, 04:08:42"
+        },
+        {
+          "body": "2222",
+          "id": 2,
+          "userName": "nyasha25",
+          "time": "20.08.2023, 04:16:25"
+        },
+        {
+          "body": "qweqwe",
+          "id": 5,
+          "userName": "sdfsdf",
+          "time": "20.08.2023, 11:24:51"
+        }
+      ],
+      "id": 33
     }
   ],
   "users": [
     {
       "id": 1,
-      "pwd": "Masha",
-      "email": "masha515@gmail.com"
+      "password": "!1Masha",
+      "email": "masha515@gmail.com",
+      "userName": "asha435"
+    },
+    {
+      "email": "natalya.ivanova.smm@gmail.com",
+      "password": "123!Aa",
+      "id": 2,
+      "userName": "nyasha25"
+    },
+    {
+      "email": "nataly-joker@gmail.com",
+      "password": "54321Aa!",
+      "id": 3,
+      "userName": "nataly615"
+    },
+    {
+      "email": "nata@hello",
+      "password": "11223!Qa3",
+      "userName": "nata",
+      "id": 4
+    },
+    {
+      "email": "sdfsdf",
+      "password": "543!Qaa",
+      "userName": "sdfsdf",
+      "id": 5
     }
   ]
 }
