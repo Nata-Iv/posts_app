@@ -12,7 +12,7 @@ import useLocalStorage from "use-local-storage";
 import CommentPost from "./components/CommentPost";
 
 function App() {
-  const [user, setUser] = useLocalStorage("user", "")
+  const [user] = useLocalStorage("user", "")
   return (
     <QueryParamProvider adapter={ReactRouter6Adapter}>
       <Routes>

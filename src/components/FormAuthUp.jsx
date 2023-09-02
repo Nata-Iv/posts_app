@@ -3,7 +3,6 @@ import { NavLink, useNavigate } from "react-router-dom";
 import FormAuth from "./FormAuth";
 import axios from "axios";
 import { API_URL } from "../const2";
-import useLocalStorage from "use-local-storage";
 
 const FormAuthUp = () => {
  // const [user, setUser] = useLocalStorage("user", "");
@@ -31,7 +30,9 @@ const FormAuthUp = () => {
          email: res.email,
          password: res.password,
          id: res.id,
-         userName: res.userName
+         userName: res.userName,
+         name: res.name,
+        country: res.country
        })
      );
      alert("You are logged in");

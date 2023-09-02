@@ -1,45 +1,64 @@
-
 import { NavLink } from "react-router-dom";
 import useLocalStorage from "use-local-storage";
+import { BiUser } from "react-icons/bi";
+import { useState } from "react";
 
 const Header = () => {
+  const [user, setUser] = useLocalStorage("user", "");
 
-  const [user, setUser] = useLocalStorage("user", "")
-   
   const logOutUser = () => {
-    setUser("")
-    localStorage.removeItem('user')
-  }
-  
+    setUser("");
+    localStorage.removeItem("user");
+  };
+
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const showUserData = () => {
+    setIsPopupOpen(true);
+  };
+
+  const closePopup = () => {
+    setIsPopupOpen(false);
+  };
+
   return (
-  
-    <div className="px-4">
-      <div className="py-3 border-b border-indigo-100 flex items-center justify-between ">
+    <div className="px-4 ">
+      <div className="relative py-3 border-b border-indigo-100 flex items-center justify-between ">
         <a className="text-2xl font-bold text-purple-800 " href="#">
           appPosts
         </a>
-        
-        <ul className=" inline-flex items-center ">
+        <ul className="inline-flex items-center ">
           <li>
-            
-            {
-              user.length != 0 ? <div>
-              <button onClick={logOutUser}>Log out</button></div> :
+            {user.length != 0 ? (
+              <div className="inline-flex align-middle">
+                <button onClick={showUserData}>
+                  <BiUser className=" text-2xl text-blue-600 mr-4" />
+                </button>
+                {isPopupOpen && (
+                  <div className=" bg-purple-200 text-center rounded-3xl text-gray-700 absolute right-6 top-10 pt-2 px-4 pb-6 w-72">
+                    <button className=" text-gray-600 block ml-52" onClick={closePopup}>X</button>
+                    <p><i>Name:</i> {user.name}</p>
+                    <p><i>Country:</i> {user.country}</p>
+                    <p><i>Email-address:</i> {user.email}</p>                
+                  </div>
+                )}
+                <button onClick={logOutUser}>Log out</button>
+              </div>
+            ) : (
               <div>
                 <button className=" header-btn " href="#">
-              <NavLink to={`sign_in`}>Registration</NavLink>
-            </button>
-              <button className=" header-btn " href="#">
-              <NavLink to={`sign_up`}>Log in</NavLink>
-            </button>
+                  <NavLink to={`sign_in`}>Registration</NavLink>
+                </button>
+                <button className="header-btn " href="#">
+                  <NavLink to={`sign_up`}>Log in</NavLink>
+                </button>
               </div>
-            }
-            
+            )}
           </li>
         </ul>
       </div>
       <div className="flex justify-between p-2 border-b border-indigo-100">
-        <div className=" text-base text-center text-gray-500 hover:text-indigo-600 ">
+        <div className="text-base text-center text-gray-500 hover:text-indigo-600 ">
           <button type="button" href="#">
             <NavLink to={`add_post`}>Add new post</NavLink>
           </button>

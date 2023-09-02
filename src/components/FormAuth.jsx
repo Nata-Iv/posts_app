@@ -4,20 +4,14 @@ const FormAuth = ({onSubmit}) => {
   const {
     register,
     handleSubmit,
-    // watch,
     formState: { errors, isValid },
   } = useForm({
     mode: "onBlur",
   });
 
-  // console.log(watch("email")); // watch input value by passing the name of it
-
   return (
     <div className="bg-purple-100">
-      
-
       <form onSubmit={handleSubmit(onSubmit)}>
-
         <input
           placeholder="Email address"
           className=" block mx-auto w-96 input"
@@ -48,10 +42,6 @@ const FormAuth = ({onSubmit}) => {
               value: 15,
               message: "Max is 15 symbols",
             },
-            // pattern: {
-            //   value: /^[A-Z]+$/i,
-            //   message: 'At least one capitalize letter'
-            // }
             validate: (value) => {
               return (
                 [/[a-z]/, /[A-Z]/, /[0-9]/,/[!@#$%^&*]/].every((pattern) =>
@@ -74,8 +64,7 @@ const FormAuth = ({onSubmit}) => {
           type="submit" value="Send Request"
           className="block mx-auto mt-5 py-1 px-3 border-2 rounded-full border-indigo-600 text-indigo-600 hover:text-white hover:bg-indigo-800 focus:outline-none focus:ring focus:ring-violet-300"
         />
-
-        
+       
       </form>
     </div>
   );

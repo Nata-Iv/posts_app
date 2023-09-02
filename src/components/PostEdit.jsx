@@ -15,15 +15,12 @@ const FormPostEdit = () => {
     axios.get(`${API_URL}/${params.id}`)
     .then((res) => setEditableUserData(res.data))
     .catch(err => console.log(err))
-  }, []);
+  }, [params.id]);
 
   const handleEditPost = (values) => {
     values.preventDefault()
       axios.put(`${API_URL}/${params.id}`, editableUserData)
-    //  console.log(editableUserData)
-    .then(response  => {
-      {navigate(`/?page=${page}`)}
-    })
+    .then(navigate(`/?page=${page}`))
   }
 
   if (!editableUserData) {
@@ -47,8 +44,7 @@ const FormPostEdit = () => {
             }))}
             className=" block mx-auto w-5/6 my-5 input"
             type="text"
-            placeholder="Title"
-            
+            placeholder="Title"            
           />
           <textarea
             className=" block mx-auto w-5/6 my-5 input"
@@ -69,14 +65,6 @@ const FormPostEdit = () => {
           </button>
           </div>
         </form>
-        <div>
-          {/* {posts.map((post, index) => (
-          <div className='oneCard' key={post.id}>
-            <h1>{post.titleValue}</h1>
-            <p>{post.bodyValue}</p>
-          </div>
-        ))} */}
-        </div>
       </div>
     </div>
   );

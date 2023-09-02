@@ -4,8 +4,12 @@ import { NavLink, useParams } from "react-router-dom";
 import { API_URL } from "../constants";
 import { NumberParam, useQueryParam, withDefault } from 'use-query-params';
 import { useNavigate } from "react-router-dom";
+import useLocalStorage from "use-local-storage";
 
 const ViewPost = () => {
+
+  const [user] = useLocalStorage("user", "");
+
   const [page] = useQueryParam('page', withDefault(NumberParam, 1))
   const navigate = useNavigate()
 
@@ -20,14 +24,12 @@ const ViewPost = () => {
         setComments(res.data.comments)
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [params.id]);
 
   const handleRemoveClick = (postData) => {
-    if (localStorage.length > 1) {
+    if (localStorage.user.includes(user.email)) {
       axios.delete(`${API_URL}/${postData.id}`)
-    .then(response  => {
-      {navigate(`/?page=${page}`)}
-    })
+    .then(navigate(`/?page=${page}`))
     } else {alert('log in for delete')}
   }
 

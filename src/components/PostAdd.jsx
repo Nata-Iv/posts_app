@@ -34,9 +34,7 @@ const FormPostAdd = () => {
       likes: postData.likes,
       comments: postData.comments
     })
-    .then(response  => {
-      {navigate(`/?page=${page}`)}
-    })
+    .then(navigate(`/?page=${page}`))
   }
   
   return (
@@ -63,7 +61,7 @@ const FormPostAdd = () => {
         </div>
       </form>
       <div>
-        {posts.map((post, index) => (
+        {posts.map((post) => (
           <div className='oneCard' key={post.id}>
             <h1>{post.titleValue}</h1>
             <p>{post.bodyValue}</p>

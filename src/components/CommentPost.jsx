@@ -19,14 +19,21 @@ const CommentPost = () => {
 
   const onSubmit = async (event) => {
     event.preventDefault()
-    // console.log(comments)
-    const res = await axios.patch(`${API_URL}/${post.id}`, {
+     await axios.patch(`${API_URL}/${post.id}`, {
         ...post,
         comments: [...comments, {body: text, id: userData.id, userName: userData.userName, time: today}]
     } 
     )
-    alert('your comment has been added')
-    window.location.reload()
+    setText('')
+    await  axios
+    .get(`${API_URL}/${params.id}`)
+    .then((res) => {
+      setComments(res.data.comments)
+      setPost(res.data)
+    })
+    .catch((err) => console.log(err));
+    
+   
   }
 
   useEffect(() => {
@@ -38,8 +45,6 @@ const CommentPost = () => {
       })
       .catch((err) => console.log(err));
   }, [params.id]);
-
-  //     if (localStorage.length > 1) 
 
   return (
     <div className=" mx-auto mt-10 w-3/5 py-2 px-6 bg-purple-50 border-2 rounded-3xl border-white mb-2">
@@ -63,14 +68,13 @@ const CommentPost = () => {
         </div>
       ))}
       <div className="bg-purple-100 rounded-3xl my-4 px-4 py-2">
-        {/* <p>{user.email}</p> */}
         <form onSubmit={onSubmit} action="">
         <textarea className=" text-sm outline-none h-20 text-gray-600 px-2 rounded-md w-full"
          value={text}
          onChange={(e) => setText(e.target.value)}
          ></textarea>
         <div className=" flex justify-end">
-        <button disabled={isAreaDisabled} type="submit" className=" bg-purple-300 px-2 rounded-full btn-decorate ">save</button>
+        <button disabled={isAreaDisabled} type="submit" className=" bg-purple-300 px-2 btn-decorate ">save</button>
         </div>
         </form>
       </div>

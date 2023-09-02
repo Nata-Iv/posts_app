@@ -13,7 +13,7 @@ import {
 import useLocalStorage from "use-local-storage";
 
 const Home = () => {
-  const [user] = useLocalStorage("user", "")
+  const [user] = useLocalStorage("user", "");
 
   const [totalPosts, setTotalPosts] = useState(0);
   const limit = 3;
@@ -33,13 +33,12 @@ const Home = () => {
     setPage(newOffset);
   };
 
-  const [showPreview, setShowPreview] = useState(false);
-  
-  const togglePreview =  (id) => {
-   
-      setShowPreview(!showPreview)
-   
-    
+  const handleClick = (id) => {
+    setPosts(prevPosts =>
+      prevPosts.map(post =>
+        post.id === id ? { ...post, isActive: !post.isActive } : post
+      )
+    );     
   };
 
   const likePost = async (post) => {
@@ -48,7 +47,7 @@ const Home = () => {
       if (post.likes.includes(userData.id)) {
         const indexToDelete = post.likes.findIndex(
           (like) => like == userData.id
-        )
+        );
         const newLikes = [
           ...post.likes.slice(0, indexToDelete),
           ...post.likes.slice(indexToDelete + 1),
@@ -74,15 +73,14 @@ const Home = () => {
           if (post.id === response.data.id) {
             return response.data;
           }
-          
+
           return post;
         });
         setPosts(newPosts);
       }
     } else {
-      alert('log in to like post')
+      alert("log in to like post");
     }
-
     // const updatedPostIndex = posts.findIndex(post => post.id === response.data.id)
     // const newPosts = [
     //   ...posts.slice(0,updatedPostIndex),
@@ -108,31 +106,24 @@ const Home = () => {
   }, [page, debouncedSearchTerm]);
 
   const handleRemoveClick = async (postData) => {
-
     if (localStorage.user.includes(user.email)) {
       try {
-        const isDelete = await axios.delete(`${API_URL}/${postData.id}`)
+        const isDelete = await axios.delete(`${API_URL}/${postData.id}`);
         if (isDelete) {
           axios
-        .get(`${API_URL}?_page=${page}&_limit=${limit}&_sort=id&_order=desc`)
-        .then((data) => {
-          setPosts(data.data);
-        })
+            .get(
+              `${API_URL}?_page=${page}&_limit=${limit}&_sort=id&_order=desc`
+            )
+            .then((data) => {
+              setPosts(data.data);
+            });
         }
       } catch (error) {
         console.log(error);
       }
-      // axios.delete(`${API_URL}/${postData.id}`)
-      // axios
-      //   .get(`${API_URL}?_page=${page}&_limit=${limit}&_sort=id&_order=desc`)
-      //   .then((data) => {
-      //     setPosts(data.data);
-      //   })
-      //   .then((er) => console.log(er));
     } else {
       alert("log in to delete post");
     }
-    // window.location.reload()
   };
 
   function useDebounce(value, delay) {
@@ -152,27 +143,20 @@ const Home = () => {
   function searchCharacters() {
     axios
       .get(
-        `${API_URL}?_page=${page}&_limit=${limit}&_order=desc&q=${searchTerm}`
+        `${API_URL}?_page=${page}&_limit=${limit}&_order=desc&title_like=${searchTerm}`
       )
       .then((res) => {
-        setPosts(
-          res.data.filter((post) => {
-            return post.title.toLowerCase().includes(searchTerm.toLowerCase());
-          })
-        );
+        setPage(1);
+        setPosts(res.data);
         setTotalPosts(Math.ceil(res.headers.get("X-Total-Count") / limit));
-        
-        console.log(res.headers)
-        console.log(totalPosts)
       });
   }
 
   return (
-    <div className=" min-h-full w-screen h-screen max-w-screen-xl mx-auto grid grid-rows-[auto_1fr_auto] ">
+    <div className="min-h-full w-screen h-screen max-w-screen-xl mx-auto grid grid-rows-[auto_1fr_auto] ">
       <div>
         <Header />
-
-        <form className=" w-1/2 mx-auto">
+        <form className="w-1/2 mx-auto">
           <input
             className="mt-4 w-full p-2 outline-gray-100 outline hover:outline-gray-400 rounded-sm active:outline-gray-400 "
             type="text"
@@ -180,13 +164,11 @@ const Home = () => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-          {/* {isSearching && <div>Searching ...</div>} */}
         </form>
       </div>
 
-      <Posts
-      showPreview={showPreview}
-      togglePreview={togglePreview}
+      <Posts      
+        handleClick={handleClick}
         likePost={likePost}
         page={page}
         posts={posts}
