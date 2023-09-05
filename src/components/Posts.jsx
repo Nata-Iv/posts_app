@@ -12,8 +12,9 @@ const Posts = ({
   if (loading) {
     return <h2>Loading...</h2>;
   }
-
+console.log('weweew', posts)
   return (
+
     <div className="p-4">
       {posts.map((post) => {
         

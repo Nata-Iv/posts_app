@@ -12,6 +12,20 @@ import {
 } from "use-query-params";
 import useLocalStorage from "use-local-storage";
 
+function useDebounce(value, delay) {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+    return () => {
+      clearTimeout(handler);
+    };
+  });
+  return debouncedValue;
+}
+
 const Home = () => {
   const [user] = useLocalStorage("user", "");
 
@@ -26,7 +40,7 @@ const Home = () => {
     "search",
     withDefault(StringParam, "")
   );
-  const debouncedSearchTerm = useDebounce(searchTerm, 1000);
+  const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
   const handlePageClick = (event) => {
     const newOffset = event.selected + 1;
@@ -90,12 +104,13 @@ const Home = () => {
   };
 
   useEffect(() => {
-    setLoading(true);
     if (debouncedSearchTerm) {
+      
       searchCharacters();
-      setLoading(false);
+      
       return;
     }
+    setLoading(true)
     axios
       .get(`${API_URL}?_page=${page}&_limit=${limit}&_sort=id&_order=desc`)
       .then((res) => {
@@ -126,30 +141,25 @@ const Home = () => {
     }
   };
 
-  function useDebounce(value, delay) {
-    const [debouncedValue, setDebouncedValue] = useState(value);
-
-    useEffect(() => {
-      const handler = setTimeout(() => {
-        setDebouncedValue(value);
-      }, delay);
-      return () => {
-        clearTimeout(handler);
-      };
-    });
-    return debouncedValue;
-  }
+  
 
   function searchCharacters() {
     axios
       .get(
         `${API_URL}?_page=${page}&_limit=${limit}&_order=desc&title_like=${searchTerm}`
       )
-      .then((res) => {
-        setPage(1);
+      .then((res) => { 
+       
         setPosts(res.data);
+        console.log(res.data)
         setTotalPosts(Math.ceil(res.headers.get("X-Total-Count") / limit));
+        setLoading(false);
       });
+  }
+  const handleSearchTermChange = (value) => {
+    setPage(1)
+    setLoading(true)
+    setSearchTerm(value)
   }
 
   return (
@@ -162,7 +172,8 @@ const Home = () => {
             type="text"
             placeholder="Search post"
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={(e) => handleSearchTermChange(e.target.value)}
+
           />
         </form>
       </div>
@@ -175,12 +186,14 @@ const Home = () => {
         loading={loading}
         handleRemoveClick={handleRemoveClick}
       />
-
-      <Pagination
-        page={page}
-        handlePageClick={handlePageClick}
-        pageCount={totalPosts}
-      />
+{
+  !loading && <Pagination
+  page={page}
+  handlePageClick={handlePageClick}
+  pageCount={totalPosts}
+/>
+}
+      
     </div>
   );
 };
