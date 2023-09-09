@@ -1,16 +1,16 @@
-import axios from "axios";
-import { API_URL } from "../constants";
-import Header from "./Header";
-import { useState, useEffect } from "react";
-import Pagination from "./Pagination";
-import Posts from "./Posts";
+import axios from 'axios';
+import { API_URL } from '../constants';
+import Header from '../components/Header';
+import { useState, useEffect } from 'react';
+import Pagination from '../components/Pagination';
+import Posts from '../components/Posts';
 import {
   NumberParam,
   StringParam,
   useQueryParam,
   withDefault,
-} from "use-query-params";
-import useLocalStorage from "use-local-storage";
+} from 'use-query-params';
+import useLocalStorage from 'use-local-storage';
 
 function useDebounce(value, delay) {
   const [debouncedValue, setDebouncedValue] = useState(value);
@@ -27,18 +27,18 @@ function useDebounce(value, delay) {
 }
 
 const Home = () => {
-  const [user] = useLocalStorage("user", "");
+  const [user] = useLocalStorage('user', '');
 
   const [totalPosts, setTotalPosts] = useState(0);
   const limit = 3;
-  const [page, setPage] = useQueryParam("page", withDefault(NumberParam, 1));
+  const [page, setPage] = useQueryParam('page', withDefault(NumberParam, 1));
 
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const [searchTerm, setSearchTerm] = useQueryParam(
-    "search",
-    withDefault(StringParam, "")
+    'search',
+    withDefault(StringParam, ''),
   );
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
@@ -48,20 +48,17 @@ const Home = () => {
   };
 
   const handleClick = (id) => {
-    setPosts(prevPosts =>
-      prevPosts.map(post =>
-        post.id === id ? { ...post, isActive: !post.isActive } : post
-      )
-    );     
+    setPosts((prevPosts) =>
+      prevPosts.map((post) =>
+        post.id === id ? { ...post, isActive: !post.isActive } : post,
+      ),
+    );
   };
 
   const likePost = async (post) => {
     if (user.length != 0) {
-      const userData = JSON.parse(localStorage.getItem("user"));
-      if (post.likes.includes(userData.id)) {
-        const indexToDelete = post.likes.findIndex(
-          (like) => like == userData.id
-        );
+      if (post.likes.includes(user.id)) {
+        const indexToDelete = post.likes.findIndex((like) => like == user.id);
         const newLikes = [
           ...post.likes.slice(0, indexToDelete),
           ...post.likes.slice(indexToDelete + 1),
@@ -79,45 +76,36 @@ const Home = () => {
         setPosts(newPosts);
       } else {
         const response = await axios.patch(`${API_URL}/${post.id}`, {
-          // ...post, likeCount: post.likeCount + 1
           ...post,
-          likes: [...post.likes, userData.id],
+          likes: [...post.likes, user.id],
         });
         const newPosts = posts.map((post) => {
           if (post.id === response.data.id) {
             return response.data;
           }
-
           return post;
         });
         setPosts(newPosts);
       }
     } else {
-      alert("log in to like post");
+      alert('log in to like post');
     }
-    // const updatedPostIndex = posts.findIndex(post => post.id === response.data.id)
-    // const newPosts = [
-    //   ...posts.slice(0,updatedPostIndex),
-    //   response.data,
-    //   ...posts.slice(updatedPostIndex + 1)
-    // ]
   };
 
   useEffect(() => {
     if (debouncedSearchTerm) {
-      
       searchCharacters();
-      
       return;
     }
-    setLoading(true)
+    setLoading(true);
     axios
       .get(`${API_URL}?_page=${page}&_limit=${limit}&_sort=id&_order=desc`)
       .then((res) => {
         setPosts(res.data, res.data.id);
-        setTotalPosts(Math.ceil(res.headers.get("X-Total-Count") / limit));
+        setTotalPosts(Math.ceil(res.headers.get('X-Total-Count') / limit));
         setLoading(false);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, debouncedSearchTerm]);
 
   const handleRemoveClick = async (postData) => {
@@ -127,7 +115,7 @@ const Home = () => {
         if (isDelete) {
           axios
             .get(
-              `${API_URL}?_page=${page}&_limit=${limit}&_sort=id&_order=desc`
+              `${API_URL}?_page=${page}&_limit=${limit}&_sort=id&_order=desc`,
             )
             .then((data) => {
               setPosts(data.data);
@@ -137,30 +125,27 @@ const Home = () => {
         console.log(error);
       }
     } else {
-      alert("log in to delete post");
+      alert('log in to delete post');
     }
   };
-
-  
 
   function searchCharacters() {
     axios
       .get(
-        `${API_URL}?_page=${page}&_limit=${limit}&_order=desc&title_like=${searchTerm}`
+        `${API_URL}?_page=${page}&_limit=${limit}&_order=desc&title_like=${searchTerm}`,
       )
-      .then((res) => { 
-       
+      .then((res) => {
         setPosts(res.data);
-        console.log(res.data)
-        setTotalPosts(Math.ceil(res.headers.get("X-Total-Count") / limit));
+        setTotalPosts(Math.ceil(res.headers.get('X-Total-Count') / limit));
         setLoading(false);
       });
   }
+
   const handleSearchTermChange = (value) => {
-    setPage(1)
-    setLoading(true)
-    setSearchTerm(value)
-  }
+    setPage(1);
+    setLoading(true);
+    setSearchTerm(value);
+  };
 
   return (
     <div className="min-h-full w-screen h-screen max-w-screen-xl mx-auto grid grid-rows-[auto_1fr_auto] ">
@@ -173,27 +158,24 @@ const Home = () => {
             placeholder="Search post"
             value={searchTerm}
             onChange={(e) => handleSearchTermChange(e.target.value)}
-
           />
         </form>
       </div>
 
-      <Posts      
+      <Posts
         handleClick={handleClick}
         likePost={likePost}
         page={page}
         posts={posts}
-        loading={loading}
         handleRemoveClick={handleRemoveClick}
       />
-{
-  !loading && <Pagination
-  page={page}
-  handlePageClick={handlePageClick}
-  pageCount={totalPosts}
-/>
-}
-      
+      {!loading && (
+        <Pagination
+          page={page}
+          handlePageClick={handlePageClick}
+          pageCount={totalPosts}
+        />
+      )}
     </div>
   );
 };

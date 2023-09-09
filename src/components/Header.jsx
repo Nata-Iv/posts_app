@@ -1,16 +1,16 @@
-import { NavLink } from "react-router-dom";
-import useLocalStorage from "use-local-storage";
-import { BiUser } from "react-icons/bi";
-import { useEffect, useRef, useState } from "react";
+import { NavLink } from 'react-router-dom';
+import useLocalStorage from 'use-local-storage';
+import { BiUser } from 'react-icons/bi';
+import { useEffect, useRef, useState } from 'react';
 
 const Header = () => {
-  const [user, setUser] = useLocalStorage("user", "");
+  const [user, setUser] = useLocalStorage('user', '');
   const modalRef = useRef(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
- 
+
   const logOutUser = () => {
-    setUser("");
-    localStorage.removeItem("user");
+    setUser('');
+    localStorage.removeItem('user');
   };
 
   const showUserData = () => {
@@ -39,7 +39,6 @@ const Header = () => {
     };
   }, [isPopupOpen]);
 
-
   return (
     <div className="px-4 ">
       <div className="relative py-3 border-b border-indigo-100 flex items-center justify-between ">
@@ -54,11 +53,25 @@ const Header = () => {
                   <BiUser className=" text-2xl text-blue-600 mr-4" />
                 </button>
                 {isPopupOpen && (
-                  <div ref={modalRef} className="bg-purple-200 text-center rounded-3xl text-gray-700 absolute right-6 top-10 pt-2 px-4 pb-6 w-72">
-                    <button className=" text-gray-600 block ml-52" onClick={closePopup}>X</button>
-                    <p><i>Name:</i> {user.name}</p>
-                    <p><i>Country:</i> {user.country}</p>
-                    <p><i>Email-address:</i> {user.email}</p>                
+                  <div
+                    ref={modalRef}
+                    className="bg-purple-200 text-center rounded-3xl text-gray-700 absolute right-6 top-10 pt-2 px-4 pb-6 w-72"
+                  >
+                    <button
+                      className=" text-gray-600 block ml-52"
+                      onClick={closePopup}
+                    >
+                      X
+                    </button>
+                    <p>
+                      <i>Name:</i> {user.name}
+                    </p>
+                    <p>
+                      <i>Country:</i> {user.country}
+                    </p>
+                    <p>
+                      <i>Email-address:</i> {user.email}
+                    </p>
                   </div>
                 )}
                 <button onClick={logOutUser}>Log out</button>

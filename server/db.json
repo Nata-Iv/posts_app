@@ -71,7 +71,7 @@
       "isActive": false
     },
     {
-      "title": "good evening",
+      "title": "good evening 3",
       "body": "I'm here",
       "comments": [],
       "id": 8,
@@ -95,7 +95,9 @@
     },
     {
       "id": 11,
-      "likes": [],
+      "likes": [
+        2
+      ],
       "comments": [],
       "title": "Title 11: qui est esse",
       "body": "Eest rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla. Iuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est "
@@ -105,7 +107,20 @@
       "likes": [
         3
       ],
-      "comments": [],
+      "comments": [
+        {
+          "body": "hi all",
+          "id": 2,
+          "userName": "nyasha25",
+          "time": "07.09.2023, 03:04:45"
+        },
+        {
+          "body": "comment 2",
+          "id": 2,
+          "userName": "nyasha25",
+          "time": "07.09.2023, 03:04:54"
+        }
+      ],
       "title": "Title 12: ea molestias quasi exercitationem repellat qui ipsa sit aut",
       "body": "Det iusto sed quo iure\nvoluptatem occaecati omnis eligendi aut ad\nvoluptatem doloribus vel accusantium quis pariatur\nmolestiae porro eius odio et labore et velit aut. untur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est untur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est.",
       "isActive": false

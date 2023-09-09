@@ -1,23 +1,10 @@
-import { NavLink } from "react-router-dom";
-import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
+import { NavLink } from 'react-router-dom';
+import { AiOutlineArrowDown, AiOutlineArrowUp } from 'react-icons/ai';
 
-const Posts = ({
-  loading,
-  posts,
-  handleRemoveClick,
-  page,
-  likePost,
-  handleClick,
-}) => {
-  if (loading) {
-    return <h2>Loading...</h2>;
-  }
-console.log('weweew', posts)
+const Posts = ({ posts, handleRemoveClick, page, likePost, handleClick }) => {
   return (
-
     <div className="p-4">
       {posts.map((post) => {
-        
         return (
           <div
             className=" py-2 px-6 bg-purple-50 border-2 rounded-3xl border-white mb-2"
@@ -27,8 +14,8 @@ console.log('weweew', posts)
               <h3
                 className={` font-bold text-xl text-purple-950 ${
                   post.isActive
-                    ? " overflow-visible h-max"
-                    : "overflow-hidden h-7 "
+                    ? ' overflow-visible h-max'
+                    : 'overflow-hidden h-7 '
                 }`}
               >
                 {post.title}
@@ -36,8 +23,8 @@ console.log('weweew', posts)
               <p
                 className={` text-blue-950  ${
                   post.isActive && post.body.length > 100
-                    ? " overflow-visible w-max-content"
-                    : " overflow-hidden h-20 "
+                    ? ' overflow-visible w-max-content'
+                    : ' overflow-hidden h-20 '
                 }`}
               >
                 {post.body}
@@ -46,12 +33,12 @@ console.log('weweew', posts)
             <div className="block md:hidden text-sm text-gray-500">
               {post.isActive ? (
                 <button onClick={() => handleClick(post.id)}>
-                  {" "}
+                  {' '}
                   hide <AiOutlineArrowUp className=" inline-block" />
                 </button>
               ) : (
                 <button onClick={() => handleClick(post.id)}>
-                  {" "}
+                  {' '}
                   ...show more <AiOutlineArrowDown className=" inline-block" />
                 </button>
               )}

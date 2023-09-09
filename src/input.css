@@ -7,7 +7,7 @@
 }
 
 .react-paginate li {
-  @apply p-3
+  @apply p-3;
 }
 
 .react-paginate .selected {
@@ -15,22 +15,18 @@
 }
 
 .react-paginate .disabled {
-  @apply text-purple-300
+  @apply text-purple-300;
 }
 
 .input {
-  @apply py-2 px-6 text-gray-600 border-2 rounded-3xl border-white
+  @apply py-2 px-6 text-gray-600 border-2 rounded-3xl border-white;
 }
 
 button:disabled,
 input:disabled {
-  @apply text-gray-600 border-gray-400 hover:bg-transparent
+  @apply text-gray-600 border-gray-400 hover:bg-transparent;
 }
 
 .btn-decorate {
-  @apply rounded-full border-indigo-600 text-indigo-600 hover:text-white hover:bg-indigo-800 focus:outline-none focus:ring focus:ring-violet-300
+  @apply rounded-full border-indigo-600 text-indigo-600 hover:text-white hover:bg-indigo-800 focus:outline-none focus:ring focus:ring-violet-300;
 }
-
-
-
-
