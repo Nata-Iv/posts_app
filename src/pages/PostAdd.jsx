@@ -61,7 +61,6 @@ const FormPostAdd = () => {
           />
           <textarea
             className=" block mx-auto w-5/6 my-5 input"
-            type="textarea"
             placeholder="Body"
             onChange={(e) =>
               setPostData((prevState) => ({
