@@ -42,14 +42,12 @@ const Header = () => {
   return (
     <div className="px-4 ">
       <div className="relative py-3 border-b border-indigo-100 flex items-center justify-between ">
-        <a className="text-2xl font-bold text-purple-800 " href="#">
-          appPosts
-        </a>
+        <p className="text-2xl font-bold text-purple-800 ">appPosts</p>
         <ul className="inline-flex items-center ">
           <li>
-            {user.length != 0 ? (
+            {user.length !== 0 ? (
               <div className="inline-flex align-middle">
-                <button onClick={showUserData}>
+                <button type="button" onClick={showUserData}>
                   <BiUser className=" text-2xl text-blue-600 mr-4" />
                 </button>
                 {isPopupOpen && (
@@ -58,6 +56,7 @@ const Header = () => {
                     className="bg-purple-200 text-center rounded-3xl text-gray-700 absolute right-6 top-10 pt-2 px-4 pb-6 w-72"
                   >
                     <button
+                      type="button"
                       className=" text-gray-600 block ml-52"
                       onClick={closePopup}
                     >
@@ -74,16 +73,18 @@ const Header = () => {
                     </p>
                   </div>
                 )}
-                <button onClick={logOutUser}>Log out</button>
+                <button type="button" onClick={logOutUser}>
+                  Log out
+                </button>
               </div>
             ) : (
-              <div>
-                <button className=" header-btn " href="#">
+              <div className=" flex">
+                <div className=" header-btn ">
                   <NavLink to={`sign_in`}>Registration</NavLink>
-                </button>
-                <button className="header-btn " href="#">
+                </div>
+                <div className="header-btn ">
                   <NavLink to={`sign_up`}>Log in</NavLink>
-                </button>
+                </div>
               </div>
             )}
           </li>
@@ -91,9 +92,9 @@ const Header = () => {
       </div>
       <div className="flex justify-between p-2 border-b border-indigo-100">
         <div className="text-base text-center text-gray-500 hover:text-indigo-600 ">
-          <button type="button" href="#">
+          <div>
             <NavLink to={`add_post`}>Add new post</NavLink>
-          </button>
+          </div>
         </div>
       </div>
     </div>

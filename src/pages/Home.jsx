@@ -56,9 +56,9 @@ const Home = () => {
   };
 
   const likePost = async (post) => {
-    if (user.length != 0) {
+    if (user.length !== 0) {
       if (post.likes.includes(user.id)) {
-        const indexToDelete = post.likes.findIndex((like) => like == user.id);
+        const indexToDelete = post.likes.findIndex((like) => like === user.id);
         const newLikes = [
           ...post.likes.slice(0, indexToDelete),
           ...post.likes.slice(indexToDelete + 1),
@@ -101,7 +101,7 @@ const Home = () => {
     axios
       .get(`${API_URL}?_page=${page}&_limit=${limit}&_sort=id&_order=desc`)
       .then((res) => {
-        setPosts(res.data, res.data.id);
+        setPosts(res.data);
         setTotalPosts(Math.ceil(res.headers.get('X-Total-Count') / limit));
         setLoading(false);
       });

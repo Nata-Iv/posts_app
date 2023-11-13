@@ -16,7 +16,6 @@ const CommentPost = () => {
   const [comments, setComments] = useState([]);
   const [text, setText] = useState('');
   const isAreaDisabled = text.length === 0;
-
   const onSubmit = async (event) => {
     event.preventDefault();
     await axios.patch(`${API_URL}/${post.id}`, {
@@ -48,13 +47,9 @@ const CommentPost = () => {
 
   return (
     <div className=" mx-auto mt-10 w-3/5 py-2 px-6 bg-purple-50 border-2 rounded-3xl border-white mb-2">
-      <button
-        type="button"
-        href="#"
-        className=" mb-4 text-base  text-gray-500 hover:text-indigo-600 "
-      >
+      <div className=" mb-4 text-base  text-gray-500 hover:text-indigo-600 ">
         <NavLink to={`../?page=${page}`}>Return to all posts</NavLink>
-      </button>
+      </div>
       <h3 className="font-bold text-xl text-purple-950">{post.title}</h3>
       <p className=" text-blue-950 ">{post.body}</p>
 

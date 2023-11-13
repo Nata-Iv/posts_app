@@ -35,29 +35,20 @@ const ViewPost = () => {
   };
 
   return (
-    <div className=" mx-auto mt-10 w-3/5 py-2 px-6 bg-purple-50 border-2 rounded-3xl border-white mb-2">
-      <button
-        type="button"
-        href="#"
-        className="mb-4 text-base  text-gray-500 hover:text-indigo-600 "
-      >
+    <div className=" mx-auto mt-10 w-3/5 py-2 px-6 bg-purple-50 border-2 rounded-3xl border-white mb-2 ">
+      <div className=" inline-block mb-4 text-base  text-gray-500 hover:text-indigo-600 ">
         <NavLink to={`../?page=${page}`}>Return to all posts</NavLink>
-      </button>
+      </div>
       <h3 className="font-bold text-xl text-purple-950">{post.title}</h3>
       <p className="text-blue-950">{post.body}</p>
       <div className=" text-right">
-        <button
-          type="button"
-          href="#"
-          className="ml-8 text-base  text-gray-500 hover:text-indigo-600 "
-        >
+        <div className=" inline-block ml-8 text-base  text-gray-500 hover:text-indigo-600 ">
           <NavLink to={`../edit/${params.id}?page=${page}`}>Edit post</NavLink>
-        </button>
+        </div>
         <button
           className="ml-8 text-base  text-gray-500 hover:text-red-600 "
           onClick={() => handleRemoveClick(post)}
           type="button"
-          href="#"
         >
           Delete post
         </button>
@@ -74,16 +65,12 @@ const ViewPost = () => {
             </p>
           </div>
         ))}
-      <div className="text-center">
-        <button
-          type="button"
-          href="#"
-          className="ml-8 text-base  text-gray-500 hover:text-indigo-600 "
-        >
+      <div className=" text-center">
+        <div className=" ml-8 text-base  text-gray-500 hover:text-indigo-600 ">
           <NavLink to={`../comment_post/${params.id}?page=${page}`}>
             Comment post
           </NavLink>
-        </button>
+        </div>
       </div>
     </div>
   );

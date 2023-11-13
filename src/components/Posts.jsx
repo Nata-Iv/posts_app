@@ -32,47 +32,38 @@ const Posts = ({ posts, handleRemoveClick, page, likePost, handleClick }) => {
             </div>
             <div className="block md:hidden text-sm text-gray-500">
               {post.isActive ? (
-                <button onClick={() => handleClick(post.id)}>
+                <button type="button" onClick={() => handleClick(post.id)}>
                   {' '}
                   hide <AiOutlineArrowUp className=" inline-block" />
                 </button>
               ) : (
-                <button onClick={() => handleClick(post.id)}>
+                <button type="button" onClick={() => handleClick(post.id)}>
                   {' '}
                   ...show more <AiOutlineArrowDown className=" inline-block" />
                 </button>
               )}
             </div>
             <div className="text-right  text-gray-700">
-              <button onClick={() => likePost(post)}>
+              <button type="button" onClick={() => likePost(post)}>
                 Likes {post.likes.length}
               </button>
-              <button type="button" href="#" className="ml-8 text-gray-500">
+              <div className=" inline-block ml-8 text-gray-500">
                 <NavLink to={`comment_post/${post.id}?page=${page}`}>
                   Comment post ({post.comments.length})
                 </NavLink>
-              </button>
-              <button
-                type="button"
-                href="#"
-                className="ml-8 text-base  text-gray-500 hover:text-indigo-600 "
-              >
+              </div>
+              <div className=" inline-block ml-8 text-base  text-gray-500 hover:text-indigo-600 ">
                 <NavLink to={`view/${post.id}?page=${page}`}>View post</NavLink>
-              </button>
+              </div>
 
-              <button
-                type="button"
-                href="#"
-                className=" ml-8 text-base  text-gray-500 hover:text-indigo-600 "
-              >
+              <div className=" inline-block ml-8 text-base  text-gray-500 hover:text-indigo-600 ">
                 <NavLink to={`edit/${post.id}?page=${page}`}>Edit post</NavLink>
-              </button>
+              </div>
 
               <button
-                className="ml-8 text-base  text-gray-500 hover:text-red-600 "
-                onClick={() => handleRemoveClick(post)}
                 type="button"
-                href="#"
+                className=" ml-8 text-base  text-gray-500 hover:text-red-600 "
+                onClick={() => handleRemoveClick(post)}
               >
                 Delete post
               </button>
